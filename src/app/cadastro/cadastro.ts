@@ -4,6 +4,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { Cliente } from './cliente';
+import { ClienteService } from '../cliente';
 
 @Component({
   selector: 'app-cadastro',
@@ -11,8 +15,19 @@ import { MatInputModule } from '@angular/material/input';
     MatCardModule,
     FormsModule,
     MatFormFieldModule,
-    MatInputModule],
+    MatInputModule,
+    MatIconModule, MatButtonModule],
   templateUrl: './cadastro.html',
   styleUrl: './cadastro.scss',
 })
-export class Cadastro {}
+export class Cadastro {
+
+  cliente: Cliente = Cliente.newCliente();
+
+  constructor(private service: ClienteService) { }
+
+  saveClient() {
+    this.service.save(this.cliente);
+  }
+
+}

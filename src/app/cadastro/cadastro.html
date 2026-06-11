@@ -1,18 +1,58 @@
 <div fxLayout="row" fxLayoutAlign="center center">
-  <div fxLayout="column" fxFlex="1000px">
-    <form class="mt-60" #clientesFrm="ngForm">
+  <div fxLayout="column" fxFlex="900px">
+    <form class="mt-60" #clientesFrm="ngForm" (ngSubmit)="saveClient()">
       <mat-card>
         <mat-card-header>
           <mat-card-title>Dados Pessoais</mat-card-title>
         </mat-card-header>
         <mat-card-content class="mt-20">
           <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
-            <mat-form-field>
-              <mat-label>Nome: *</mat-label>
-              <input type="text" matInput name="nome" placeholder="Digite seu nome completo" ngModel required />
-            </mat-form-field>
+            <div fxLayout="column" fxFlex="800px">
+              <mat-form-field class="full-width">
+                <mat-label>Nome: *</mat-label>
+                <input type="text" matInput [(ngModel)]="cliente.nome" name="nome" placeholder="Digite seu nome completo"  required />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
+            <div fxLayout="column" fxFlex="550px">
+              <mat-form-field class="full-width">
+                <mat-label>Email: *</mat-label>
+                <input type="email" matInput [(ngModel)]="cliente.email" name="email" placeholder="Digite seu email"  required />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
+            <div fxLayout="column" fxFlex="300px">
+              <mat-form-field class="full-width">
+                <mat-label>CPF: *</mat-label>
+                <input type="text" matInput [(ngModel)]="cliente.cpf" name="cpf" placeholder="Digite seu CPF"  required />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
+            <div fxLayout="column" fxFlex="300px">
+              <mat-form-field class="full-width">
+                <mat-label>Data de Nascimento: *</mat-label>
+                <input type="text" matInput [(ngModel)]="cliente.dataNascimento" name="dataNascimento" placeholder="Digite sua data de nascimento (dd/MM/yyyy)"  required />
+              </mat-form-field>
+            </div>
           </div>
         </mat-card-content>
+        <mat-card-actions>
+          <div fxLayout="row">
+            <div fxLayoutAlign="column" fxLayoutGap="16px">
+              <button mat-raised-button color="primary" type="submit">
+                <mat-icon fontIcon="save"></mat-icon>Salvar</button>
+              <button mat-raised-button color="warn" type="reset">
+                <mat-icon fontIcon="cancel"></mat-icon>Limpar</button>
+            </div>
+          </div>
+
+        </mat-card-actions>
       </mat-card>
     </form>
   </div>
