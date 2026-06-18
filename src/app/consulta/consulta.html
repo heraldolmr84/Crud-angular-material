@@ -1,6 +1,6 @@
 <div fxLayout="row" fxLayoutAlign="center">
-  <div fxLayout="column" fxFlex="900px">
-    <form action="" class="mt-60" #buscaFrm="ngForm">
+  <div fxLayout="column" fxFlex="1100px">
+    <form action="" class="mt-60" #buscaFrm="ngForm" (ngSubmit)="pesquisar()">
       <mat-card apearance="outlined">
         <mat-card-header>
           <mat-card-title>Consulta</mat-card-title>
@@ -9,16 +9,16 @@
           <div fxLayout="row" fxLayoutGap="20px">
             <mat-form-field fxFlex>
               <mat-label>Nome</mat-label>
-              <input matInput name="nome" ngModel placeholder="Digite o nome para busca">
+              <input matInput name="nomeBusca" [(ngModel)]="nomeBusca" placeholder="Digite o nome para busca">
             </mat-form-field>
-            <mat-form-field fxFlex>
+            <!--<mat-form-field fxFlex>
               <mat-label>CPF</mat-label>
-              <input matInput name="cpf" ngModel placeholder="Digite o CPF para busca" mask="000.000.000-00">
-            </mat-form-field>
+              <input matInput name="cpf"  placeholder="Digite o CPF para busca" mask="000.000.000-00">
+            </mat-form-field>-->
           </div>
         </mat-card-content>
         <mat-card-actions align="start">
-          <button mat-flat-button color="primary" type="submit">
+          <button mat-flat-button color="primary" type="submit" (click)="pesquisar()">
             <mat-icon fontIcon="search"></mat-icon>
             Buscar
           </button>
@@ -31,13 +31,18 @@
 </div>
 
 <div fxLayout="row" fxLayoutAlign="center">
-  <div fxlayout="column" fxFlex="900px">
+  <div fxlayout="column" fxFlex="1100px">
     <mat-card appearance="outlined">
       <mat-card-header>
         <mat-card-title>Resultado da Consulta</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <table mat-table [dataSource]="listaClientes" class="mat-elevation-z8">
+
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> ID </th>
+            <td mat-cell *matCellDef="let cliente"> {{cliente.id}} </td>
+          </ng-container>
 
           <ng-container matColumnDef="nome">
             <th mat-header-cell *matHeaderCellDef> Nome </th>
@@ -59,8 +64,22 @@
             <td mat-cell *matCellDef="let cliente"> {{cliente.email}} </td>
           </ng-container>
 
-          <tr mat-header-row *matHeaderRowDef="['nome', 'cpf', 'dataNascimento', 'email']"></tr>
-          <tr mat-row *matRowDef="let row; columns: ['nome', 'cpf', 'dataNascimento', 'email'];"></tr>
+          <ng-container matColumnDef="acoes">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let cliente">
+              <button type="button" mat-button color="primary" (click)="preparaEditar(cliente.id)">
+                <mat-icon fontIcon="edit"></mat-icon>
+                Editar
+              </button>
+              <button type="button" mat-button color="warn" (click)="excluir(cliente.id)">
+                <mat-icon fontIcon="delete"></mat-icon>
+                Excluir
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="colunasTable"></tr>
+          <tr mat-row *matRowDef="let row; columns: colunasTable;"></tr>
         </table>
       </mat-card-content>
     </mat-card>

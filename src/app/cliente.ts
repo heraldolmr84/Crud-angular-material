@@ -8,8 +8,20 @@ export class ClienteService {
 
   constructor() { }
 
-  searchClient(nome: string): Cliente[] {
-    return this.obterStorage();
+  searchClient(nomeBusca: string): Cliente[] {
+    const clientes = this.obterStorage();
+
+    if (!nomeBusca) {
+      return clientes;
+    }
+
+    return clientes.filter(cliente => cliente.nome?.toLowerCase().indexOf(nomeBusca.toLowerCase()) !== -1);
+
+  }
+
+  findById(id: string): Cliente | undefined {
+    const clientes = this.obterStorage();
+    return clientes.find(cliente => cliente.id === id);
   }
 
   salvarStorage(clientes: Cliente[]) {

@@ -45,10 +45,20 @@
         <mat-card-actions>
           <div fxLayout="row">
             <div fxLayoutAlign="column" fxLayoutGap="16px">
-              <button mat-raised-button color="primary" type="submit">
-                <mat-icon fontIcon="save"></mat-icon>Salvar</button>
+
+              @if(!atualizando) {
+                <button mat-raised-button color="primary" type="submit">
+                  <mat-icon fontIcon="save"></mat-icon>Salvar
+                </button>
+              } @else {
+                <button mat-raised-button color="primary" type="submit">
+                  <mat-icon fontIcon="refresh"></mat-icon>Atualizar
+                </button>
+              }
+
               <button mat-raised-button color="warn" type="reset">
-                <mat-icon fontIcon="cancel"></mat-icon>Limpar</button>
+                <mat-icon fontIcon="cancel"></mat-icon>Limpar
+              </button>
             </div>
           </div>
 
