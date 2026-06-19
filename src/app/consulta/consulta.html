@@ -71,10 +71,18 @@
                 <mat-icon fontIcon="edit"></mat-icon>
                 Editar
               </button>
-              <button type="button" mat-button color="warn" (click)="excluir(cliente.id)">
+
+              @if(!cliente.deletando){
+              <button type="button" mat-button color="warn" (click)="preparaDeletar(cliente)">
                 <mat-icon fontIcon="delete"></mat-icon>
                 Excluir
               </button>
+              } @else {
+              <button type="button" mat-button color="warn" (click)="excluir(cliente)">
+                <mat-icon fontIcon="question_mark"></mat-icon>
+                confirma
+              </button>
+              }
             </td>
           </ng-container>
 

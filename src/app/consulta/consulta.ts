@@ -47,7 +47,12 @@ export class Consulta {
     this.router.navigate(['/cadastro'], {queryParams: {"id" : id}})
   }
 
-  excluir(id: string) {
-    console.log("ID Recebido: ", id)
+  preparaDeletar(cliente: Cliente) {
+    cliente.deletando = true;
+  }
+
+  excluir(cliente: Cliente) {
+    this.service.deletar(cliente);
+    this.listaClientes = this.service.searchClient('');
   }
 }

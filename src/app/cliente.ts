@@ -24,6 +24,17 @@ export class ClienteService {
     return clientes.find(cliente => cliente.id === id);
   }
 
+  update(cliente: Cliente) {
+    const storage = this.obterStorage();
+    storage.forEach(c => {
+      if(c.id === cliente.id) {
+        Object.assign(c, cliente);
+      }
+    });
+
+    this.salvarStorage(storage);
+  }
+
   salvarStorage(clientes: Cliente[]) {
     localStorage.setItem(ClienteService.REPO_CLIENTES, JSON.stringify(clientes));
   }
@@ -32,6 +43,15 @@ export class ClienteService {
     const storage = this.obterStorage();
     storage.push(cliente);
     this.salvarStorage(storage);
+  }
+
+  deletar(cliente: Cliente) {
+
+    const storage = this.obterStorage();
+
+    const novaLista =storage.filter(c => c.id !== cliente.id)
+
+    this.salvarStorage(novaLista);
   }
 
   obterStorage(): Cliente[] {

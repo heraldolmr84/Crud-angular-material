@@ -10,7 +10,7 @@
             <div fxLayout="column" fxFlex="800px">
               <mat-form-field class="full-width">
                 <mat-label>Nome: *</mat-label>
-                <input type="text" matInput [(ngModel)]="cliente.nome" name="nome" placeholder="Digite seu nome completo"  required />
+                <input type="text" matInput [(ngModel)]="cliente.nome" name="nome" placeholder="Digite seu nome completo"  />
               </mat-form-field>
             </div>
           </div>
@@ -19,7 +19,7 @@
             <div fxLayout="column" fxFlex="550px">
               <mat-form-field class="full-width">
                 <mat-label>Email: *</mat-label>
-                <input type="email" matInput [(ngModel)]="cliente.email" name="email" placeholder="Digite seu email"  required />
+                <input type="email" matInput [(ngModel)]="cliente.email" name="email" placeholder="Digite seu email"  />
               </mat-form-field>
             </div>
           </div>
@@ -28,7 +28,12 @@
             <div fxLayout="column" fxFlex="300px">
               <mat-form-field class="full-width">
                 <mat-label>CPF: *</mat-label>
-                <input type="text" matInput [(ngModel)]="cliente.cpf" name="cpf" placeholder="Digite seu CPF"  required />
+                <input type="text" 
+                matInput [(ngModel)]="cliente.cpf"
+                name="cpf" 
+                mask="000.000.000-00"
+                placeholder="Digite seu CPF"  
+                />
               </mat-form-field>
             </div>
           </div>
@@ -37,7 +42,12 @@
             <div fxLayout="column" fxFlex="300px">
               <mat-form-field class="full-width">
                 <mat-label>Data de Nascimento: *</mat-label>
-                <input type="text" matInput [(ngModel)]="cliente.dataNascimento" name="dataNascimento" placeholder="Digite sua data de nascimento (dd/MM/yyyy)"  required />
+                <input type="text" 
+                matInput [(ngModel)]="cliente.dataNascimento" 
+                name="dataNascimento" 
+                mask="00/00/0000"
+                placeholder="Digite sua data de nascimento (dd/MM/yyyy)"  
+                />
               </mat-form-field>
             </div>
           </div>
